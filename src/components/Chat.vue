@@ -20,7 +20,10 @@
 </template>
 
 <script>
-import NewMessage from '@/components/NewMessage'
+import NewMessage from '@/components/NewMessage';
+import db from '@/firebase/init';
+import moment from 'moment';
+
 export default {
   name: 'Chat',
   props: ['name'],
@@ -29,8 +32,24 @@ export default {
   },
   data(){
     return{
-
-    }
+      messages: []
+    };
+  },
+  created(){
+    let ref = db.collection('message').orderBy('timestamp'); // order messages by timeout
+    ref.onSnapshot(snapshot => {
+      console.log('snap', snapshot.docChanges);
+      snapshot.docChanges.forEach(change => {
+        if (change.type === 'added') {
+          let doc = change.doc;
+          this.messages.push({
+            id: doc.id,
+            name: doc.data().content,
+            timestamp: moment(doc.data().timestamp).format('lll')
+          });
+        }
+      });
+    });
   }
 }
 </script>
@@ -49,4 +68,15 @@ export default {
     display: block;
     font-size: 1.2em;
   }
+
+  li{
+        list-style-type: none;
+    }
+  .messages{
+        max-height: 300px;
+        overflow: auto;
+    }
+  .message::-webkit-scrollbar-track{
+        background: #ddd;
+    }
 </style>
