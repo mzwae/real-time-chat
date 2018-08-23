@@ -38,8 +38,8 @@ export default {
   created(){
     let ref = db.collection('message').orderBy('timestamp'); // order messages by timeout
     ref.onSnapshot(snapshot => {
-      console.log('snap', snapshot.docChanges);
-      snapshot.docChanges.forEach(change => {
+      // console.log('snap', snapshot.docChanges);
+      snapshot.docChanges().forEach(change => {
         if (change.type === 'added') {
           let doc = change.doc;
           this.messages.push({
