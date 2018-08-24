@@ -3,11 +3,11 @@
     <h2 class="center teal-text">Ninja Chat</h2>
     <div class="card">
       <div class="card-content">
-        <ul class="messages">
-          <li>
-            <span class="teal-text">Name</span>
-            <span class="grey-text text-darken-3">message</span>
-            <span class="grey-text time">time</span>
+        <ul class="messages" v-chat-scroll>
+          <li v-for="message in messages" :key="message.id">
+            <span class="teal-text">{{message.name}}</span>
+            <span class="grey-text text-darken-3">{{message.content}}</span>
+            <span class="grey-text time">{{message.timestamp}}</span>
           </li>
         </ul>
 
@@ -44,7 +44,8 @@ export default {
           let doc = change.doc;
           this.messages.push({
             id: doc.id,
-            name: doc.data().content,
+            name: doc.data().name,
+            content: doc.data().content,
             timestamp: moment(doc.data().timestamp).format('lll')
           });
         }
