@@ -1,6 +1,6 @@
 <template>
   <div class="chat container">
-    <h2 class="center teal-text">Ninja Chat</h2>
+    <h2 class="center teal-text">Real Time Chat</h2>
     <div class="card">
       <div class="card-content">
         <ul class="messages" v-chat-scroll>
@@ -38,7 +38,6 @@ export default {
   created(){
     let ref = db.collection('message').orderBy('timestamp'); // order messages by timeout
     ref.onSnapshot(snapshot => {
-      // console.log('snap', snapshot.docChanges);
       snapshot.docChanges().forEach(change => {
         if (change.type === 'added') {
           let doc = change.doc;
