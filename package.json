@@ -1,9 +1,6 @@
 {
   "name": "real-time-chat",
   "version": "1.0.0",
-  "engines":{
-    "node": "8.7.0"
-  },
   "description": "A Vue.js project",
   "author": "mz",
   "private": true,
@@ -58,8 +55,8 @@
     "webpack-merge": "^4.1.0"
   },
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": "8.7.0",
+    "npm": "3.10.8"
   },
   "browserslist": [
     "> 1%",
