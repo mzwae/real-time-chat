@@ -3,6 +3,7 @@
     <div class="card">
       <div class="card-content center-align">
         <h2 class="teal-text">Welcome</h2>
+        <p class="teal-text">Open a second window to see the chat in action :)</p>
         <form @submit.prevent="enterChat">
           <label for="name">Enter Your name:</label>
           <input type="text" name="name" v-model="name">
