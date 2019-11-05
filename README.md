@@ -1,4 +1,4 @@
-# ninja-chat
+# real-time-chat
 
 > A Vue.js project
 
